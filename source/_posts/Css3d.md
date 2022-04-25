@@ -4,7 +4,7 @@ date: 2022-04-25 15:54:35
 tags:
 ---
 
-一个使用`transform-style: preserve-3d;`的动画效果，来自叶总的授课，挺有意思，这里记录一下
+一个使用`transform-style: preserve-3d;`的动画效果，来自叶总的分享，挺有意思，这里记录一下
 <!-- more -->
 
 html代码如下，全部没有用到js，只用css就能实现
