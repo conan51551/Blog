@@ -8,7 +8,7 @@ tags: git
 
 <!-- more -->
 
-## 回退 master 合入 dev 代码
+## 回退 master 提交
 
 ```
   git checkout master // 切换至master
