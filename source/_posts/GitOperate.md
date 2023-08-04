@@ -20,3 +20,9 @@ tags: git
   git push --delete origin master // 将origin master删除
   git push origin master // 将本地master推到origin
 ```
+
+## 查询一个月内某个人的代码提交行数
+输出的样式类似 `added lines: 1659, removed lines: 450, total lines: 1209`
+```
+git log --author="name" --pretty=tformat: --numstat --since='1 month ago'  | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
+```
