@@ -31,6 +31,11 @@ tags: git
 git log --author="name" --pretty=tformat: --numstat --since='1 month ago'  | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }'
 ```
 
+## 查询提交前五的人
+```
+git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 5
+```
+
 ## 合并多条 commit
 
 ```
