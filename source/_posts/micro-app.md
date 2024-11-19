@@ -1,7 +1,9 @@
 ---
+
 title: 微前端嵌入项目的流程
 date: 2024-11-15 15:36:32
 tags:
+
 ---
 
 ### 代账项目引入 microapp 流程
@@ -55,35 +57,20 @@ import microApp from '@micro-zoe/micro-app'
 - 页面中引用的`fintax-web`中的组件使用了`tailwind-css`，在`microapp`中无法生效，需要依据情况手动修改
 - 页面元素的主题色不生效，需要自己在`css`文件中设置（因为微前端为了样式隔离，会在`css`外侧包一层`micro-app-body`）
 
-#### 3. 页面中各种脚本找不到
+#### 3. 页面中的 layer ui 修改
 
-下面将一些需要特殊处理的脚本和公共的资源放入 cos 中以便使用
+`layer ui`引用变更
 
 ```
-// 日历组件
-<script
-  type="text/javascript"
-  src="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/mCalendar.js"
-></script>
+    <script type="text/javascript" src="<%=PUBLIC_URL%>/static/public/layer/microApp/layer/layer.js"></script>
+    <!-- 下面两个css前后顺序有关系 -->
+    <link rel="stylesheet" type="text/css" href="<%=PUBLIC_URL%>/static/public/layer/microApp/layer/skin/layer.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="<%=PUBLIC_URL%>/static/public/layer/microApp/layer/skin/yzf/layer.css"
+    />
 
-// 打印设置
-<script
-  src="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/common_dayin_modal.67.min.js"
-  type="text/javascript"
-></script>
-
-// 导入
-<script
-  type="text/javascript"
-  src="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/ajaxfileupload.js"
-></script>
-
-// layer-ui
-<script type="text/javascript" src="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/layer/layer.js"></script>
-<link rel="stylesheet" type="text/css" href="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/layer/skin/yzf/layer.css" />
-
-<!-- 为了解决micro-app拿不到window.Api的问题，所以自己写一份old-api，将Api对象挂到window上 -->
-<script src="https://fintax-web-1257122416.cos.ap-shanghai.myqcloud.com/static-resource/subaccount-20241108/js/%08salary_new/old-api.min.js"></script>
 ```
 
 #### 4.在原生页面中通过`plugin`使用了`react`组件，但是组件不生效的问题
@@ -91,18 +78,71 @@ import microApp from '@micro-zoe/micro-app'
 需要在`page-plugins.js`文件中，调用新的`createOnePage`方法匹配对应的插件。
 同时在新拷贝出来的插件中，需要将`window`或者一些全局变量按照显示的调用重新编写一份
 
-#### 5.页面中引入的脚本找到了，但是没生效
+### 5.接口方面报错或者报接口找不到
 
-判断是引用时机的问题，将脚本位置前移可以解决
+需要引入修改过的`old-api.js`
 
-#### 6.微前端的`window`对象被框架改造成了代理对象，需要使用的话用`Object.assign`的方式结构
+```
+<script src="<%=PUBLIC_URL%>/static/public/yzf/js/old-api.js"></script>
+```
 
-#### 7.页面中原本`inline`的元素变成`block`导致页面样式出问题
+这是后有可能会不生效，是因为`utils.microApp.min.js`在`old-api`之前引入的，所以需要将`old-api`放在`utils.microApp.min.js`之前引入
 
-`jquery`的 show 方法会缓存之前的的 display，所以一开始就设置为`display:none`就会导致这个问题，不在 css 中设置，而放在 js 中用 hide 代替
+```
+<script type="text/javascript" src="<%=PUBLIC_URL%>/static/public/yzf/js/utils.microApp.min.js"></script>
+```
+
+### 6.使用了微前端会导致 url 中引入之前 iframe 的参数
+
+为了是`url`干净，现将`url`的参数放到`sesstionStorage`中，在页面中获取
+首先改写`fintax-web`中`salary`目录下的的`getIframeUrl`方法，将参数放到`sessionStorage`中
+
+```
+// 判断是否是支持微应用
+  if (supportMicroAppIds.includes(kXclxid) && model_lastest[kXclxid].iframeUrl) {
+    const _key = model_lastest[kXclxid].iframeUrl.split('?')[0]
+    sessionStorage.setItem(
+      _key,
+      JSON.stringify({
+        xctjid,
+        xclxid: kXclxid,
+        xcssq,
+        xcssqq,
+        xcssqz,
+        pzzt,
+        qyid: qyId,
+        kjnd,
+        kjqj,
+        ztdm,
+      })
+    )
+  }
+```
+然后在`sub-accounts`中，在对应的页面js改写`getUrlParam`方法
+```
+;(function ($, $w) {
+  //name
+  $w.Utils = $w.Utils || {}
+
+  //url
+  $w.Utils.url = $w.Utils.url || {}
+  $.extend(true, $w.Utils.url, {
+    getUrlParam: function () {
+      const param = sessionStorage.getItem('/salary_lastest.html')
+      return param ? JSON.parse(param) : {}
+    },
+  })
+})(jQuery, window)
+```
+
+这样就要注意，文件对应的js就要在`utils.microApp.min.js`之后引入
 
 ### 总结
 
 微前端改造主要的问题是原来是用`iframe`引入的页面，相当于是一个浏览器去单独请求的页面，所以很多执行的机制是完整，通过项目的形式去走的流程，改成微前端后，页面是在一个沙箱中，数据和样式都是隔离的，很多子项目的流程不走了，所以造成了很多问题，所以需要手动去解决这些问题。
+
+<img src="/images/性能对比.png" width="800" style="margin:0"/>
+大致对比一下，在3秒内打开的正常工资，微前端会快200ms左右
+
 
 #### ps： 微前端的路由也有相应的改动，目前并没有遇到相应的需求，如果有需要，可以参考`microapp`的官方文档
