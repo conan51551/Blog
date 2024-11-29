@@ -154,7 +154,7 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-bluebird@^3.2.2, bluebird@^3.5.1, bluebird@^3.5.2, bluebird@^3.5.5:
+bluebird@^3.2.2, bluebird@^3.5.0, bluebird@^3.5.1, bluebird@^3.5.2, bluebird@^3.5.5:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
@@ -451,12 +451,19 @@ domhandler@^4.0.0, domhandler@^4.2.0:
   dependencies:
     domelementtype "^2.2.0"
 
+domhandler@^4.2.2:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-4.3.1.tgz#8d792033416f59d68bc03a5aa7b018c1ca89279c"
+  integrity sha512-GrwoxYN+uWlzO8uhUXRl0P+kHE4GtVPfYzVLcUxPL7KNdHKj66vvlhiweIHqYYXWlw+T8iLMp42Lm67ghw4WMQ==
+  dependencies:
+    domelementtype "^2.2.0"
+
 dompurify@^2.3.0:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/dompurify/-/dompurify-2.3.3.tgz#c1af3eb88be47324432964d8abc75cf4b98d634c"
   integrity sha512-dqnqRkPMAjOZE0FogZ+ceJNM2dZ3V/yNOuFB7+39qpO93hHhfRpHw3heYQC7DPK9FqbQTfBKUJhiSfz4MvXYwg==
 
-domutils@^2.5.2:
+domutils@^2.5.2, domutils@^2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/domutils/-/domutils-2.8.0.tgz#4437def5db6e2d1f5d6ee859bd95ca7d02048135"
   integrity sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==
@@ -486,6 +493,11 @@ entities@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/entities/-/entities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
   integrity sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==
+
+entities@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-3.0.1.tgz#2b887ca62585e96db3903482d336c1006c3001d4"
+  integrity sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q==
 
 escape-html@~1.0.3:
   version "1.0.3"
@@ -659,6 +671,18 @@ hexo-cli@^4.0.0:
     resolve "^1.11.0"
     tildify "^2.0.0"
 
+hexo-deployer-git@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-deployer-git/-/hexo-deployer-git-3.0.0.tgz#da82f7a3445df2b213926dc8d030ba5499b68cf3"
+  integrity sha512-U2Xewjab+rvUDNTcuYYnOxitkDXL3f5VMUH32jKDHs3OC4YFVGRoEaTTDVHskqr3KRi78Wohjc6BSRHOoG3oxA==
+  dependencies:
+    bluebird "^3.5.0"
+    chalk "^4.0.0"
+    hexo-fs "^3.0.1"
+    hexo-util "^2.1.0"
+    moment "^2.18.0"
+    nunjucks "^3.2.1"
+
 hexo-front-matter@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/hexo-front-matter/-/hexo-front-matter-2.0.0.tgz#03f39a9eedb16c5448dbb3bec7dff2c4e224006c"
@@ -690,13 +714,20 @@ hexo-generator-category@^1.0.0:
   dependencies:
     hexo-pagination "1.0.0"
 
-hexo-generator-index@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/hexo-generator-index/-/hexo-generator-index-2.0.0.tgz#15e71f4d28ee9d2172e2d77e8d1dba04882edc8f"
-  integrity sha512-q/29Vj9BZs0dwBcF+s9IT8ymS4aYZsDwBEYDnh96C8tsX+KPY5v6TzCdttz58BchifaJpP/l9mi6u9rZuYqA0g==
+hexo-generator-index-pin-top@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/hexo-generator-index-pin-top/-/hexo-generator-index-pin-top-0.2.2.tgz#34b5b9ef90e1bca8fbe957d3b3c183ca33ade937"
+  integrity sha512-1mVXHoUL5a3Q3yvIqoRVFhbJPlVAnRfc9ibToWpIlxU7ILTJwxhT6NFiS/jf/yZ0Suq1HvTI68yViMQMQVoDvg==
   dependencies:
-    hexo-pagination "1.0.0"
-    timsort "^0.3.0"
+    hexo-pagination "0.0.2"
+    object-assign "^4.0.1"
+
+hexo-generator-searchdb@^1.4.0:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/hexo-generator-searchdb/-/hexo-generator-searchdb-1.4.1.tgz#e33c9bd22130a6705673e889b6497fcc3fe80fa5"
+  integrity sha512-7m8IBpZbI6iKb2jRYxs4pghD6Ln8ylQSRGl6MIC4G9wws21vYSXSD8rvC3MoCO+pWBHs6E/mTA/rjG+p2AZfVg==
+  dependencies:
+    nunjucks "^3.2.2"
 
 hexo-generator-tag@^1.0.0:
   version "1.0.0"
@@ -718,6 +749,13 @@ hexo-log@^2.0.0:
   integrity sha512-U7zdDae74pXcyhQEyNmpJdq3UI6zWKxQ7/zLoMr/d3CBRdIfB5yO8DWqKUnewfibYv0gODyTWUIhxQDWuwloow==
   dependencies:
     chalk "^4.0.0"
+
+hexo-pagination@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/hexo-pagination/-/hexo-pagination-0.0.2.tgz#8cf470c7db0de5b18a3926a76deb194015df7f2b"
+  integrity sha512-4kSEfk+f1xX9UkLiFR0u1/uLombK7xiTcKcESkYTFc9GioeG8ORGe2IRaYF0meScMk5pDDTTmq73uZAuzpsgwg==
+  dependencies:
+    utils-merge "^1.0.0"
 
 hexo-pagination@1.0.0:
   version "1.0.0"
@@ -763,10 +801,10 @@ hexo-server@^2.0.0:
     open "^7.0.0"
     serve-static "^1.14.1"
 
-hexo-theme-landscape@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/hexo-theme-landscape/-/hexo-theme-landscape-0.0.3.tgz#87d1f4d613da9be5245dad0d4b80479eab70d386"
-  integrity sha512-b0Di+TUVs4ESrNX4ULEh9uQmADpO6kr10rIJ2OGZM8suNQNFKdxn+vJUjnLfKkCPJAfVmS7/S83KCNYe4tpoNw==
+hexo-theme-landscape@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/hexo-theme-landscape/-/hexo-theme-landscape-1.0.0.tgz#43a549ebb2bea73196200ee4397feb764131a481"
+  integrity sha512-bWQJWMqQI78wWiJPQZq5pJBH20TM442ShCaHGRetuEgMraxH0OKxB3NTupJzNEkzEk8DV2yrdizkXdKN6i501A==
 
 hexo-util@^2.0.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
   version "2.5.0"
@@ -779,6 +817,20 @@ hexo-util@^2.0.0, hexo-util@^2.4.0, hexo-util@^2.5.0:
     deepmerge "^4.2.2"
     highlight.js "^10.7.1"
     htmlparser2 "^6.0.0"
+    prismjs "^1.17.1"
+    strip-indent "^3.0.0"
+
+hexo-util@^2.1.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/hexo-util/-/hexo-util-2.7.0.tgz#13d09292e79d260db35399710b3e19f3995443a3"
+  integrity sha512-hQM3h34nhDg0bSe/Tg1lnpODvNkz7h2u0+lZGzlKL0Oufp+5KCAEUX9wal7/xC7ax3/cwEn8IuoU75kNpZLpJQ==
+  dependencies:
+    bluebird "^3.5.2"
+    camel-case "^4.0.0"
+    cross-spawn "^7.0.0"
+    deepmerge "^4.2.2"
+    highlight.js "^11.0.1"
+    htmlparser2 "^7.0.0"
     prismjs "^1.17.1"
     strip-indent "^3.0.0"
 
@@ -815,6 +867,11 @@ highlight.js@^10.7.1:
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-10.7.3.tgz#697272e3991356e40c3cac566a74eef681756531"
   integrity sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==
 
+highlight.js@^11.0.1:
+  version "11.8.0"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.8.0.tgz#966518ea83257bae2e7c9a48596231856555bb65"
+  integrity sha512-MedQhoqVdr0U6SSnWPzfiadUcDHfN/Wzq25AkXiQv9oiOO/sG0S7XkvpFIqWBl9Yq1UYyYOOVORs5UW2XlPyzg==
+
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-2.0.1.tgz#42a6dc4fd33f00281176e8b23759ca4e4fa185f3"
@@ -831,6 +888,16 @@ htmlparser2@^6.0.0:
     domhandler "^4.0.0"
     domutils "^2.5.2"
     entities "^2.0.0"
+
+htmlparser2@^7.0.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-7.2.0.tgz#8817cdea38bbc324392a90b1990908e81a65f5a5"
+  integrity sha512-H7MImA4MS6cw7nbyURtLPO1Tms7C5H602LRETv95z1MxO/7CP7rDVROehUYeYBUYEON94NXXDEPmZuq+hX4sog==
+  dependencies:
+    domelementtype "^2.0.1"
+    domhandler "^4.2.2"
+    domutils "^2.8.0"
+    entities "^3.0.1"
 
 http-errors@~1.7.2:
   version "1.7.3"
@@ -1097,6 +1164,11 @@ moment-timezone@^0.5.21:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
+moment@^2.18.0:
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
 morgan@^1.9.1:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.10.0.tgz#091778abc1fc47cd3509824653dae1faab6b17d7"
@@ -1157,10 +1229,24 @@ nunjucks@^3.2.1:
     asap "^2.0.3"
     commander "^5.1.0"
 
+nunjucks@^3.2.2:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/nunjucks/-/nunjucks-3.2.4.tgz#f0878eef528ce7b0aa35d67cc6898635fd74649e"
+  integrity sha512-26XRV6BhkgK0VOxfbU5cQI+ICFUtMLixv1noZn1tGU38kQH5A5nmmbk/O45xdyBhD1esk47nKrY0mvQpZIhRjQ==
+  dependencies:
+    a-sync-waterfall "^1.0.0"
+    asap "^2.0.3"
+    commander "^5.1.0"
+
 nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
   integrity sha512-h2AatdwYH+JHiZpv7pt/gSX1XoRGb7L/qSIeuqA6GwYoF9w1vP1cw42TO0aI2pNyshRK5893hNSl+1//vHK7hQ==
+
+object-assign@^4.0.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
+  integrity sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==
 
 on-finished@~2.3.0:
   version "2.3.0"
@@ -1494,11 +1580,6 @@ tildify@^2.0.0:
   resolved "https://registry.yarnpkg.com/tildify/-/tildify-2.0.0.tgz#f205f3674d677ce698b7067a99e949ce03b4754a"
   integrity sha512-Cc+OraorugtXNfs50hU9KS369rFXCfgGLpfCfvlc+Ud5u6VWmUQsOAa9HbTvheQdYnrdJqqv1e5oIqXppMYnSw==
 
-timsort@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
-  integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
-
 titlecase@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/titlecase/-/titlecase-1.1.3.tgz#fc6d65ff582b0602410768ef1a09b70506313dc3"
@@ -1559,10 +1640,10 @@ urix@^0.1.0:
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
   integrity sha1-2pN/emLiH+wf0Y1Js1wpNQZ6bHI=
 
-utils-merge@1.0.1:
+utils-merge@1.0.1, utils-merge@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
-  integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+  integrity sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==
 
 vary@~1.1.2:
   version "1.1.2"
